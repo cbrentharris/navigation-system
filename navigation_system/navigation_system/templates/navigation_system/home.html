@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Draggable directions</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    {% include "navigation_system/bootstrap.html" %}
+    <script src="{% static "js/main.js"%}"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-TtNqWx23wCpnFN4JTOdH4ugbEsCMqo">
+    </script>
+    <script>
+
+      $(document).ready(function(){
+        initialize();
+      });
+
+    </script>
+  </head>
+  <body>
+    <h1>Hello, {{user.username}}!</h1>
+    <div id="map-canvas" style="float:left;width:70%; height:100%"></div>
+    <div id="directionsPanel" style="float:right;width:30%;height 100%">
+    <p>Total Distance: <span id="total"></span></p>
+    </div>
+  </body>
+</html>

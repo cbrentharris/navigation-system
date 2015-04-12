@@ -1,0 +1,44 @@
+{% load url from future %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  </head>
+  <body>
+    <div class="jumbotron">
+      {% if form.errors %}
+        <h1 class="alert">Oops!</h1>
+        <p>Looks like you entered an incorrect username and password.</p>
+      {% else %}
+      <h1>Hello!</h1>
+      <p>Welcome to Navigation Automobile System</p>
+      {% endif %}
+        <form id="login-form" class="form-inline" method='post' action="{% url 'login' %}">{% csrf_token %}
+          <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+         </div><!--form-group -->
+         <div class="form-group">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+         </div><!--form-group -->
+         <input type="hidden" name="next" value="{% url 'home' %}" />
+            <p>
+              <br/>
+              <button type='submit' class="submit-btn btn btn-primary btn-lg">Login</button>
+            </p> 
+      </form>
+    </div> <!-- jumbotron -->
+  </body>
+</html>
+
+{% include 'navigation_system/bootstrap.html' %}
+
+<script>
+$(document).ready(function(){
+  // $(".submit-btn").click(function(){
+  //   $("#login-modal").modal('show');
+  // });
+});
+</script>
