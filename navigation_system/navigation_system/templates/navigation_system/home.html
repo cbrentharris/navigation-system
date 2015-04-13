@@ -15,18 +15,33 @@
     {% include "navigation_system/bootstrap.html" %}
     <script src="{% static "js/main.js"%}"></script>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-TtNqWx23wCpnFN4JTOdH4ugbEsCMqo">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{api_key}}">
     </script>
     <script>
 
       $(document).ready(function(){
-        initialize();
+        var googleMapsService = new GoogleMapsService();
+        googleMapsService.init();
+        $(".map-btn").click(function(){
+          $start = $("#start");
+          $end = $("#end");
+          googleMapsService.calcRoute($start.val(), $end.val());
+        })
       });
 
     </script>
   </head>
   <body>
     <h1>Hello, {{user.username}}!</h1>
+    <div class="form-group">
+        <label>Starting Location</label>
+        <input type="text" id="start"></input>
+     </div><!--form-group -->
+     <div class="form-group">
+        <label>Ending Location</label>
+        <input type="text" id="end"></input>
+     </div><!--form-group -->
+    <button type='submit' class="map-btn btn btn-primary">Update</button>
     <div id="map-canvas" style="float:left;width:70%; height:100%"></div>
     <div id="directionsPanel" style="float:right;width:30%;height 100%">
     <p>Total Distance: <span id="total"></span></p>

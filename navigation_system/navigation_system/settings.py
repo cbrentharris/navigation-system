@@ -91,3 +91,5 @@ TEMPLATE_DIRS = (
 STATICFILES_DIRS = (
     os.path.join(SETTINGS_PATH, "static"),
 )
+
+API_KEY = "AIzaSyCM-TtNqWx23wCpnFN4JTOdH4ugbEsCMqo"
